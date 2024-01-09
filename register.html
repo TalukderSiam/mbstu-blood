@@ -46,19 +46,71 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Register" id="register"></td>
+            <td><input type="submit" value="Register" id="register" class="register"></td>
         </tr>
         
 
        
     </table>
 
-    //aikhne api and data backend a pathanur kaj 
+    <div id="error-message" class="messages"></div>
+  <div id="success-message" class="messages"></div>
+
+
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript">
 
     $(document).ready(function(){
+
+        function message(message , status){
+        if(status == true ){
+          $("#success-message").html(message).slideDown();
+          $("#error-message").slideUp();
+
+          setTimeout(function(){
+            $("#success-message").slideUp();
+
+          },4000);
+          alert("insert successfully");
+        }
+        else {
+          $("#error-message").html(message).slideDown();
+          $("#success-message").slideUp();
+          setTimeout(function(){
+            $("#error-message").slideUp();
+
+          },4000);
+        }
+      }
+
+
+
+
+      // function for form data to json object
+
+
+
+  function jsondata(targateForm){
+       
+       var arr = $(targateForm).serializeArray();
+       
+       var obj={};
+         
+   
+         for(var a=0 ; a<arr.length ; a++){
+
+          if(arr[a].value == ""){
+            return false ;
+          }
+           obj[arr[a].name] =arr[a].value;
+         }
+        //now convert int json using stringfy funtion
+        var json_string = JSON.stringify(obj);
+        return json_string ;
+     }
+
+
     //Insert New Record
     //call the event of submit button
     $("#register").on("click",function(e){
@@ -66,29 +118,28 @@
       e.preventDefault();
 
       //now convert the all data of form to array 
-      var arr = $("#form").serializeArray();
+      var jsonobj = jsondata("#form");
       
-
-      //serialarry ->javascript object ->json
-
-      var obj={};
-
-      for(var a=0 ; a<arr.length ; a++){
-        obj[arr[a].name] =arr[a].value;
+      if(jsonobj == false ){
+        message("All field are required ",false );
       }
-     //now convert int json using stringfy funtion
-     var json_string = JSON.stringify(obj);
 
-     // console.log(json_string);
+     else {
      $.ajax({
        url : 'http://localhost:3000/register-api.php',
        type: "POST",
-       data : json_string ,
+       data : jsonobj ,
        success :function(data){
-          alert("registration done bro or sis")
+          
+        message(data.message, data.status);
+         
+            
+         }
+
        }
 
-     })
+     );
+    }
 
 
 
@@ -103,6 +154,8 @@
 
 
     });
+
+
   
 </script>
 

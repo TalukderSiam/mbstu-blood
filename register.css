@@ -18,5 +18,34 @@ form{
     color: white;
     padding: 5px;
     font-size: larger;
+    font-weight: bold;
     border-radius: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
 }
+
+.register:hover, .register:focus,.register:active{
+    transform :scale(1.1);
+}
+
+#success-message,
+  #error-message{
+    background: #DEF1D8;
+    color: green;
+    font-size: 30px;
+    padding: 10px;
+    margin: 10px;
+    display: none;
+    position: fixed;
+    right: 15px;
+    top: 15px;
+    z-index: 20;
+  }
+  #error-message{
+    background: #8b0209;
+    color:white;
+    font-weight: bold;
+    
+  }
+
+

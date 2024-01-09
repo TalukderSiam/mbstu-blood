@@ -10,7 +10,7 @@ header('Access-Control-Allow-Methods : POST') ;
 
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-with') ;
 
-//any formate ar input accept korte pare and convert it into associative
+  //any formate ar input accept korer pare and convert it into associative
  //formate and also read json
  $data = json_decode(file_get_contents("php://input"),true);
 
@@ -38,23 +38,23 @@ if($conn->connect_error){
 
 $check_duplicate = "SELECT * FROM mbstublood WHERE email='$email'";
 $duplicate_result = $conn->query($check_duplicate);
+$ans=0;
 
 if ($duplicate_result->num_rows > 0) {
-    echo "Email address already exists. Please use a different email.";
+    echo json_encode(array('message' => 'Email exits' ,'status' => false));
+    $ans=-1;
 } 
 
 //$sql = "INSERT INTO student (name,id,email) VALUES ('$name','$id','$email')";
-
+else {
 $sql = "INSERT INTO mbstublood (name, student_id,blood_group,phone_number,department,email, password) VALUES ('$name', '$id', '$blood','$number','$department','$email','$password')";
 
 
-if(mysqli_query($conn,$sql)){
+if(mysqli_query($conn,$sql) and $ans == 0){
     echo json_encode(array('message' => 'Data insert successfully' ,'status' => true));
 }
 else {
     echo json_encode(array('message' => 'Data  not insert successfully' ,'status' => false));
 }
-
-$conn->close();
+}
 ?>
-
