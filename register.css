@@ -30,8 +30,8 @@ form{
 
 #success-message,
   #error-message{
-    background: #DEF1D8;
-    color: green;
+    background: #134b01;
+    color: white;
     font-size: 30px;
     padding: 10px;
     margin: 10px;

@@ -38,7 +38,8 @@
 
         <tr>
             <td><b>EMAIL</b></td>
-            <td><input type="email" name="email" id="email" required></td>
+            <td><input type="email" name="email" id="email" required ></td>
+            
         </tr>
         <tr>
             <td><b>PASSWORD</b></td>
@@ -72,7 +73,7 @@
             $("#success-message").slideUp();
 
           },4000);
-          alert("insert successfully");
+      
         }
         else {
           $("#error-message").html(message).slideDown();
@@ -125,6 +126,12 @@
       }
 
      else {
+
+      var emailRegex = /^[a-zA-Z0-9._-]+@mbstu\.ac\.bd$/;
+                if (!emailRegex.test($("#email").val())) {
+                    message("Invalid email address. Please use an email ending with @mbstu.ac.bd", false);
+                }
+      else {
      $.ajax({
        url : 'http://localhost:3000/register-api.php',
        type: "POST",
@@ -140,6 +147,7 @@
 
      );
     }
+  }
 
 
 

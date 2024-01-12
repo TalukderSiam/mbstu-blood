@@ -2,17 +2,13 @@
 
 
 //return json formate for every request from browser  
-header('Content-Type : application/json');
-
+header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-header('Access-Control-Allow-Methods : POST') ;
+$data = json_decode(file_get_contents("php://input"), true);
 
-header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-with') ;
-
-  //any formate ar input accept korer pare and convert it into associative
- //formate and also read json
- $data = json_decode(file_get_contents("php://input"),true);
 
 $name = $data['name'];
 $id = $data['id'];
@@ -30,7 +26,7 @@ if($conn->connect_error){
 }
 
 //ete security jnne use korci 
-//$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 
 
@@ -40,10 +36,36 @@ $check_duplicate = "SELECT * FROM mbstublood WHERE email='$email'";
 $duplicate_result = $conn->query($check_duplicate);
 $ans=0;
 
+
+$length = strlen($email);
+
+// Initialize an empty variable to store characters one by one
+$individualCharacters = '';
+
+// Traverse the email address and store each character
+for ($i = 0; $i < $length; $i++) {
+    if($email[$i] == '@') {
+        break;
+    }
+    $currentCharacter = $email[$i];
+    // Store the current character in the new variable or perform any other operations
+    $individualCharacters .= $currentCharacter;
+}
+$individualCharacters =strtoupper($individualCharacters);
+$id =strtoupper($id);
+
+
+
+
+
+
 if ($duplicate_result->num_rows > 0) {
-    echo json_encode(array('message' => 'Email exits' ,'status' => false));
+    echo json_encode(array('message' => 'Email Address Already Exits' ,'status' => false));
     $ans=-1;
 } 
+else if($individualCharacters != $id){
+    echo json_encode(array('message' => 'ID Or Email not match ' ,'status' => false));
+}
 
 //$sql = "INSERT INTO student (name,id,email) VALUES ('$name','$id','$email')";
 else {
@@ -51,10 +73,10 @@ $sql = "INSERT INTO mbstublood (name, student_id,blood_group,phone_number,depart
 
 
 if(mysqli_query($conn,$sql) and $ans == 0){
-    echo json_encode(array('message' => 'Data insert successfully' ,'status' => true));
+    echo json_encode(array('message' => 'Data Insert Successfully' ,'status' => true));
 }
 else {
-    echo json_encode(array('message' => 'Data  not insert successfully' ,'status' => false));
+    echo json_encode(array('message' => 'Data  Not Insert Successfully' ,'status' => false));
 }
 }
 ?>
