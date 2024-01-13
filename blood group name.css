@@ -51,7 +51,7 @@
 .box-img{
     height: 200px;
     width: 100% ;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 
@@ -63,6 +63,28 @@
 
 .box-img2{
     height: 210px;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
+
+button {
+    background-color: green;
+    height: 28px;
+    width: 50px;
+    color: white;
+    position: relative;
+    
+    
+}
+
+
+
+#click {
+    left: 88px;
+    bottom: 10px;
+}
+
+button:hover {
+    border: 3px solid red;
+}
+
