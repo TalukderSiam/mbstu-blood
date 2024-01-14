@@ -2,13 +2,12 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-$data = json_decode(file_get_contents("php://input"), true);
 
-$student_id = "A+";
+
 
 $conn=new mysqli("localhost","root","","bloodbank");
 
-$sql = "SELECT * FROM students WHERE id = {$student_id}";
+$sql = "SELECT * FROM mbstublood WHERE blood_group = 'A+' ";
 
 $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
 
