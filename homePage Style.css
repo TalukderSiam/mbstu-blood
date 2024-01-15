@@ -4,6 +4,9 @@
     font-family: sans-serif;
 }
 
+.main-body{
+    display: block;
+}
 .banner {
     width: 100%;
     height: 100vh;
@@ -108,4 +111,26 @@ button:hover span {
 
 button:hover {
     border: none;
+}
+.faq{
+    display: flex;
+    margin: 50px 110px 50px 110px;
+    background: rgb(240, 242, 242);
+}
+.faq-text{
+    display: block;
+}
+.faq-text h1{
+    font-size: 40px;
+    margin-top: 150px;
+    margin-left: 120px;
+}
+.faq-text p{
+    font-size: 20px;
+    margin: 20px 120px 20px 120px ;
+    color: rgb(104, 104, 99);
+}
+.faq-text button{
+    background: black;
+    margin-left: 120px;
 }
