@@ -26,7 +26,7 @@ if($conn->connect_error){
 }
 
 //ete security jnne use korci 
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+//$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 
 
