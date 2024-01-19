@@ -8,7 +8,7 @@
 </head>
 <body id="bodyy">
     <center>
-    <form action="login.php" method="post">
+    <form action="#" method="POST" autocomplete="off">
        <h1>WELCOME FOR LOGIN</h1>
         <table>
             <tr>
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" name="" id="login" value="Login"></td>
+                <td><input type="submit" name="login" id="login" value="Login"></td>
             </tr>
         </table>
         <p>not register? <a href="register.html">Register</a></p>
@@ -29,3 +29,25 @@
 </center>
 </body>
 </html>
+
+<?php
+$conn = new mysqli("localhost", "root", "", "bloodbank");
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $query = "SELECT * FROM mbstublood WHERE email='$email' AND password='$password'";
+    $data = mysqli_query($conn, $query);
+    $total = mysqli_num_rows($data);
+    if($total==1){
+        header('location:blood group name page.php');
+    }
+    else {
+
+    }
+}
+?>
