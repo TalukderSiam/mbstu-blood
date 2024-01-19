@@ -8,7 +8,7 @@
 </head>
 <body id="bodyy">
     <center>
-        <form action="#" method="POST" autocomplete="off">
+        <form action="login.php" method="POST">
             <h1>WELCOME FOR LOGIN</h1>
             <table>
                 <tr>
@@ -55,7 +55,13 @@ if (isset($_POST['login'])) {
         exit;  // It's a good practice to exit after a header redirect
     } else {
     
-        echo "Invalid email or password";  // You can provide a message or redirect to a login error page
+       // echo "Invalid email or password";  // You can provide a message or redirect to a login error page
+       echo '<script type="text/javascript">';
+       echo 'alert("Invalid email or password");';
+       echo 'window.location.href = "login.php";';  // Redirect to the login page
+       echo '</script>';
+    
     }
 }
 ?>
+
