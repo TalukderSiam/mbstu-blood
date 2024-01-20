@@ -26,7 +26,7 @@ if($conn->connect_error){
 }
 
 //ete security jnne use korci 
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+//$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 
 
@@ -64,7 +64,7 @@ if ($duplicate_result->num_rows > 0) {
     $ans=-1;
 } 
 else if($individualCharacters != $id){
-    echo json_encode(array('message' => 'ID Or Email not match ' ,'status' => false));
+    echo json_encode(array('message' => 'ID AND EMAIL NOT MATCH ' ,'status' => false));
 }
 
 //$sql = "INSERT INTO student (name,id,email) VALUES ('$name','$id','$email')";

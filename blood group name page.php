@@ -48,7 +48,8 @@
 
                 <div class="box-content">
                     <div class="box-img2" style="background-image: url(A-.png);"></div>
-                    <button id="click">Click</button>
+                   <!--- <button id="click">Click</button>-->
+                   <button id="click"><a href="A- blood.html">Click</a></button>
                   </div>
 
               </div>
