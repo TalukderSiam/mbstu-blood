@@ -112,6 +112,16 @@ button:hover span {
 button:hover {
     border: none;
 }
+.qutue{
+    text-align: center;
+    font-size: 45px;
+    margin: 100px;
+    padding: 50px;
+    background-color: rgb(73, 101, 139);
+}
+.qutue-mark{
+    font-size: 80px;
+}
 .faq{
     display: flex;
     margin: 50px 110px 50px 110px;
