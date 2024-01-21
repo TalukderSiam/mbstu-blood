@@ -23,7 +23,7 @@
             <div class="side-option">
              <p><b>Homepage</b></p>
              <P><B>Blood group name</B></P>
-             <P><B>Gallery</B></P>
+             <P><B><a href="GalleryF.html">Gallery</a></B></P>
 
             </div>
 

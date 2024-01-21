@@ -4,10 +4,10 @@ header('Access-Control-Allow-Origin: *');
 
 
 
-
 $conn=new mysqli("localhost","root","","bloodbank");
 
 $sql = "SELECT * FROM mbstublood WHERE blood_group = 'A+' ";
+
 
 $result = mysqli_query($conn, $sql) or die("SQL Query Failed.");
 
